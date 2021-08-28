@@ -18,7 +18,7 @@ public class Login extends JFrame implements ActionListener {
         setFont(Font.getFont("Tahoma"));
 
         titleLabel = new JLabel("Login Page");
-        titleLabel.setForeground(Color.getColor("CF2A27"));
+        titleLabel.setForeground(new java.awt.Color(255, 102, 0));
         titleLabel.setFont(new Font("Tahoma", Font.PLAIN,40));
         unameLabel = new JLabel("Username:");
         passLabel = new JLabel("Password:");

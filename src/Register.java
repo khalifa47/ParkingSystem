@@ -19,7 +19,7 @@ public class Register extends JFrame implements ActionListener {
         setTitle("Register Page");
 
         titleLabel = new JLabel("Login Page");
-        titleLabel.setForeground(Color.getColor("CF2A27"));
+        titleLabel.setForeground(new java.awt.Color(255, 102, 0));
         titleLabel.setFont(new Font("Tahoma", Font.PLAIN,40));
         fnameLabel = new JLabel("First Name:");
         lnameLabel = new JLabel("Last Name:");
@@ -72,13 +72,18 @@ public class Register extends JFrame implements ActionListener {
         add(titleLabel); add(fnameLabel); add(lnameLabel); add(emailLabel); add(createPassLabel); add(confirmPassLabel); add(unameLabel); add(phoneLabel); add(planLabel); add(dobLabel);
         add(fnameField); add(lnameField); add(emailField); add(createPassField); add(confirmPassField); add(unameField); add(phoneField); add(planBox); add(dobField);
         add(registerButton); add(backButton);
+
+        registerButton.addActionListener(this);
+        backButton.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if(e.getSource() == registerButton){
-//
-//        }
+        if(e.getSource() == registerButton){
+            AdminPortal adm = new AdminPortal();
+            adm.setVisible(true);
+            this.setVisible(false);
+        }
         if(e.getSource() == backButton){
             Login login = new Login();
             login.setVisible(true);
