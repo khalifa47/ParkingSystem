@@ -8,17 +8,21 @@ public class UpdateProfile extends JFrame{
     private JTextField tfFirstName,tfLastName,tfEmail,tfUsername,tfPhoneNo;
     private JButton btnUpdate;
     private JLabel lFirstName,lLastName,lEmail,lUsername,lPhoneNo,lTitle;
+    private JButton backButton;
+
 
     public UpdateProfile(){
         add(UpdateProfile);
+        setSize(900, 600);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Dashboard d = new Dashboard();
+                d.setVisible(true);
+            }
+        });
     }
 
-    public static void main(String[] args) {
-        UpdateProfile up = new UpdateProfile();
-        up.setVisible(true);
-        up.setTitle("Update profile");
-        up.pack();
-        up.setLocationRelativeTo(null);
-        up.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
 }

@@ -4,12 +4,16 @@
  * and open the template in the editor.
  */
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author bashybaranaba
  */
-public class Dashboard extends javax.swing.JFrame {
+public class Dashboard extends javax.swing.JFrame{
 
+    UpdateProfile up;
     /**
      * Creates new form Dashboard
      */
@@ -25,7 +29,7 @@ public class Dashboard extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        setVisible(true);
         panel1 = new java.awt.Panel();
         jLabel1 = new javax.swing.JLabel();
         panel2 = new java.awt.Panel();
@@ -64,6 +68,12 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         button2.setLabel("Change Password");
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                button2ActionPerformed(e);
+            }
+        });
 
         button3.setLabel("View Parking History");
         button3.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +83,12 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         button4.setLabel("View Transaction History");
+        button4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button4ActionPerformed(evt);
+            }
+        });
+
 
         button5.setLabel("Change Plan");
         button5.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +98,11 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         button6.setLabel("Top Up Wallet");
+        button6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
@@ -150,49 +171,44 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
+        up = new UpdateProfile();
+        up.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
+        // TODO add your handling code here:
+        ChangePassword cp = new ChangePassword();
+        cp.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_button3ActionPerformed
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
         // TODO add your handling code here:
+        ParkingHistory ph = new ParkingHistory();
+        ph.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_button3ActionPerformed
+
+    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
+        // TODO add your handling code here:
+        TransactionHistory th = new TransactionHistory();
+        th.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_button3ActionPerformed
 
     private void button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button5ActionPerformed
+        ChangePlan changePlan = new ChangePlan();
+        changePlan.setVisible(true);
+        this.setVisible(false);
+    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dashboard().setVisible(true);
-            }
-        });
+    private void button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
+        // TODO add your handling code here:
+        TopupWallet tuw = new TopupWallet();
+        tuw.setVisible(true);
+        this.setVisible(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -205,5 +221,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private java.awt.Panel panel1;
     private java.awt.Panel panel2;
+
     // End of variables declaration//GEN-END:variables
 }

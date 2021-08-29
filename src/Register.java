@@ -80,8 +80,8 @@ public class Register extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == registerButton){
-            AdminPortal adm = new AdminPortal();
-            adm.setVisible(true);
+            Dashboard dash = new Dashboard();
+            dash.setVisible(true);
             this.setVisible(false);
         }
         if(e.getSource() == backButton){

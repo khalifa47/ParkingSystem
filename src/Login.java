@@ -48,9 +48,10 @@ public class Login extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loginButton){
-            ParkingHistory ph = new ParkingHistory();
-            ph.setVisible(true);
+            Dashboard d = new Dashboard();
+            d.setVisible(true);
             this.setVisible(false);
+
         }
         else if(e.getSource() == registerButton){
             Register register = new Register();
