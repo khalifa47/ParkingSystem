@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class GlobalFunctions {
     boolean passwordNotValid(JPasswordField passField) {
@@ -31,6 +34,29 @@ public class GlobalFunctions {
         String pass2 = String.valueOf(passwordField2.getPassword());
 
         return pass1.equals(pass2);
+    }
+
+    boolean checkDate(JTextField textField){
+        String d = textField.getText();
+        SimpleDateFormat formatter =new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            formatter.parse(d);
+            return true;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    Date StringToDate(JTextField textField) {
+        String s = textField.getText();
+        SimpleDateFormat formatter =new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return formatter.parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 //    boolean isIDInvalid(JTextField input) {

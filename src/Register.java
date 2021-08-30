@@ -10,6 +10,8 @@ public class Register extends JFrame implements ActionListener {
     private JComboBox<String> planBox;
     private JButton registerButton, backButton;
 
+    GlobalFunctions gf = new GlobalFunctions();
+
     Register(){
         setVisible(true);
         setSize(900, 600);
@@ -80,9 +82,21 @@ public class Register extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == registerButton){
-            Dashboard dash = new Dashboard();
-            dash.setVisible(true);
-            this.setVisible(false);
+            if (fnameField.getText().trim().isEmpty() || lnameField.getText().trim().isEmpty() || emailField.getText().trim().isEmpty() || unameField.getText().trim().isEmpty() || phoneField.getText().trim().isEmpty() || dobField.getText().trim().isEmpty() || String.valueOf(createPassField.getPassword()).trim().isEmpty() || String.valueOf(confirmPassField.getPassword()).trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Warning: Required fields are empty");
+            } else if (gf.emailNotValid(emailField)) {
+                JOptionPane.showMessageDialog(this, "Warning: Invalid E-mail address");
+            } else if(gf.passwordNotValid(createPassField)){
+                JOptionPane.showMessageDialog(this, "Warning: Invalid Password. Must be 8 or more characters and have at least one digit");
+            } else if (!gf.passMatching(createPassField, confirmPassField)) {
+                JOptionPane.showMessageDialog(this, "Warning: Passwords do not match");
+            } else if (gf.checkDate(dobField)){
+                JOptionPane.showMessageDialog(this, "Warning: Wrong Date format. \nPlease use the format YYYY-MM-DD");
+            } else{
+                Dashboard dash = new Dashboard();
+                dash.setVisible(true);
+                this.setVisible(false);
+            }
         }
         if(e.getSource() == backButton){
             Login login = new Login();
