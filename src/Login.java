@@ -2,12 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Login extends JFrame implements ActionListener {
     private JLabel titleLabel, unameLabel, passLabel;
     private JTextField unameField;
     private JPasswordField passField;
     private JButton loginButton, registerButton;
+
+    Database db = new Database();
 
     public Login(){
         setSize(900, 600);
@@ -51,9 +55,23 @@ public class Login extends JFrame implements ActionListener {
             if (unameField.getText().trim().isEmpty() || String.valueOf(passField.getPassword()).trim().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Warning: Required fields are empty");
             } else {
-                Dashboard d = new Dashboard();
-                d.setVisible(true);
-                this.setVisible(false);
+                String SQL = "SELECT uname, pass FROM users WHERE uname = '" + unameField.getText() + "' AND pass = MD5('" + String.valueOf(passField.getPassword()) + "')";
+                ResultSet resultSet = db.getData(SQL, this);
+                try {
+                    if (resultSet.next()){
+                        JOptionPane.showMessageDialog(this, "Login Successful!");
+                        Dashboard d = new Dashboard();
+                        d.setVisible(true);
+                        this.setVisible(false);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Invalid login credentials!");
+                        unameField.setText("");
+                        passField.setText("");
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
 
         }

@@ -4,13 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Register extends JFrame implements ActionListener {
-    private JLabel titleLabel, fnameLabel, lnameLabel, emailLabel, createPassLabel, confirmPassLabel, unameLabel, phoneLabel, planLabel, dobLabel;
-    private JTextField fnameField, lnameField, emailField, unameField, phoneField, dobField;
+    private JLabel titleLabel, fnameLabel, lnameLabel, emailLabel, createPassLabel, confirmPassLabel, unameLabel, phoneLabel, planLabel;
+    private JTextField fnameField, lnameField, emailField, unameField, phoneField;
     private JPasswordField createPassField, confirmPassField;
     private JComboBox<String> planBox;
     private JButton registerButton, backButton;
 
     GlobalFunctions gf = new GlobalFunctions();
+    Database db = new Database();
 
     Register(){
         setVisible(true);
@@ -31,7 +32,6 @@ public class Register extends JFrame implements ActionListener {
         unameLabel = new JLabel("Username:");
         phoneLabel = new JLabel("Phone:");
         planLabel = new JLabel("Plan of choice:");
-        dobLabel = new JLabel("Date of birth");
 
         fnameField = new JTextField();
         lnameField = new JTextField();
@@ -40,7 +40,6 @@ public class Register extends JFrame implements ActionListener {
         phoneField = new JTextField();
         String[] plans = {"1 - Prepaid", "2 - Daily Subscription", "3 - Monthly Subscription"};
         planBox = new JComboBox<>(plans);
-        dobField = new JTextField();
         createPassField = new JPasswordField();
         confirmPassField = new JPasswordField();
 
@@ -51,12 +50,11 @@ public class Register extends JFrame implements ActionListener {
         fnameLabel.setBounds(200, 160, 100, 21);
         lnameLabel.setBounds(200, 200, 100, 21);
         emailLabel.setBounds(200, 240, 100, 21);
-        createPassLabel.setBounds(200, 280, 100, 21);
-        confirmPassLabel.setBounds(200, 320, 100, 21);
+        createPassLabel.setBounds(200, 280, 150, 21);
+        confirmPassLabel.setBounds(200, 320, 150, 21);
         unameLabel.setBounds(200, 360, 100, 21);
         phoneLabel.setBounds(200, 400, 100, 21);
         planLabel.setBounds(200, 440, 100, 21);
-        dobLabel.setBounds(200, 480, 100, 21);
 
         fnameField.setBounds(320, 160, 225, 27);
         lnameField.setBounds(320, 200, 225,27);
@@ -66,13 +64,12 @@ public class Register extends JFrame implements ActionListener {
         unameField.setBounds(320, 360, 225,27);
         phoneField.setBounds(320, 400, 225,27);
         planBox.setBounds(320, 440, 225,27);
-        dobField.setBounds(320, 480, 225,27);
 
-        registerButton.setBounds(320, 520, 90, 27);
-        backButton.setBounds(470, 520, 75, 27);
+        registerButton.setBounds(320, 480, 90, 27);
+        backButton.setBounds(470, 480, 75, 27);
 
-        add(titleLabel); add(fnameLabel); add(lnameLabel); add(emailLabel); add(createPassLabel); add(confirmPassLabel); add(unameLabel); add(phoneLabel); add(planLabel); add(dobLabel);
-        add(fnameField); add(lnameField); add(emailField); add(createPassField); add(confirmPassField); add(unameField); add(phoneField); add(planBox); add(dobField);
+        add(titleLabel); add(fnameLabel); add(lnameLabel); add(emailLabel); add(createPassLabel); add(confirmPassLabel); add(unameLabel); add(phoneLabel); add(planLabel);
+        add(fnameField); add(lnameField); add(emailField); add(createPassField); add(confirmPassField); add(unameField); add(phoneField); add(planBox);
         add(registerButton); add(backButton);
 
         registerButton.addActionListener(this);
@@ -82,7 +79,7 @@ public class Register extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == registerButton){
-            if (fnameField.getText().trim().isEmpty() || lnameField.getText().trim().isEmpty() || emailField.getText().trim().isEmpty() || unameField.getText().trim().isEmpty() || phoneField.getText().trim().isEmpty() || dobField.getText().trim().isEmpty() || String.valueOf(createPassField.getPassword()).trim().isEmpty() || String.valueOf(confirmPassField.getPassword()).trim().isEmpty()) {
+            if (fnameField.getText().trim().isEmpty() || lnameField.getText().trim().isEmpty() || emailField.getText().trim().isEmpty() || unameField.getText().trim().isEmpty() || phoneField.getText().trim().isEmpty() || String.valueOf(createPassField.getPassword()).trim().isEmpty() || String.valueOf(confirmPassField.getPassword()).trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Warning: Required fields are empty");
             } else if (gf.emailNotValid(emailField)) {
                 JOptionPane.showMessageDialog(this, "Warning: Invalid E-mail address");
@@ -90,11 +87,13 @@ public class Register extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Warning: Invalid Password. Must be 8 or more characters and have at least one digit");
             } else if (!gf.passMatching(createPassField, confirmPassField)) {
                 JOptionPane.showMessageDialog(this, "Warning: Passwords do not match");
-            } else if (gf.checkDate(dobField)){
-                JOptionPane.showMessageDialog(this, "Warning: Wrong Date format. \nPlease use the format YYYY-MM-DD");
-            } else{
-                Dashboard dash = new Dashboard();
-                dash.setVisible(true);
+            } else if (!gf.isPhoneValid(phoneField)){
+                JOptionPane.showMessageDialog(this, "Warning: Invalid phone number entered. \nAccepted phone number format: 07XXXXXXXX");
+            } else {
+                String SQL = "INSERT INTO users(fname, lname, uname, pass, email, phone, plan) VALUES('" + fnameField.getText() + "', '" + lnameField.getText() + "', '" + unameField.getText() + "', MD5('" + String.valueOf(createPassField.getPassword()) + "'), '" + emailField.getText() + "', '" + phoneField.getText() + "', '" + planBox.getSelectedItem() + "')";
+                db.setData(SQL, "Registration success", this);
+                Login login = new Login();
+                login.setVisible(true);
                 this.setVisible(false);
             }
         }
