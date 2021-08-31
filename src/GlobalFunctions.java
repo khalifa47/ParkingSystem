@@ -36,40 +36,39 @@ public class GlobalFunctions {
         return pass1.equals(pass2);
     }
 
-    boolean checkDate(JTextField textField){
-        String d = textField.getText();
-        SimpleDateFormat formatter =new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            formatter.parse(d);
-            return true;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    Date StringToDate(JTextField textField) {
-        String s = textField.getText();
-        SimpleDateFormat formatter =new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            return formatter.parse(s);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-//    boolean isIDInvalid(JTextField input) {
+//    boolean checkDate(JTextField textField){
+//        String d = textField.getText();
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //        try {
-//            int test = Integer.parseInt(input.getText());
-//            return (getLength(test) != 8);
-//
-//        } catch (NumberFormatException e) {
+//            formatter.parse(d);
 //            return true;
+//        } catch (ParseException e) {
+//            return false;
 //        }
 //    }
-//    int getLength(int test) {
-//        String s = Integer.toString(test);
-//        return s.length();
+//
+//    Date StringToDate(JTextField textField) {
+//        String s = textField.getText();
+//        SimpleDateFormat formatter =new SimpleDateFormat("yyyy-MM-dd");
+//        try {
+//            return formatter.parse(s);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
 //    }
+
+    boolean isPhoneValid(JTextField input) {
+        try {
+            int test = Integer.parseInt(input.getText());
+            return (getLength(test) == 9);
+
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    int getLength(int test) {
+        String s = Integer.toString(test);
+        return s.length();
+    }
 }
