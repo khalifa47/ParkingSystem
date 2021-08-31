@@ -116,7 +116,7 @@ public class ParkingHistory extends javax.swing.JFrame {
         int CC;
         try {
            
-            con = DriverManager.getConnection("jdbc:mysql://localhost:8889/parkingapp","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/parkingapp","root","");
             select = con.prepareStatement("SELECT * FROM parking WHERE userID = 1");
             ResultSet Rs = select.executeQuery();
             
