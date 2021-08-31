@@ -56,10 +56,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="40" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="ff" type="rgb"/>
+          <Font name="Lucida Grande" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Parking History"/>
       </Properties>
@@ -74,16 +71,22 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="4">
-                <Column editable="true" title="Date" type="java.lang.Object"/>
-                <Column editable="true" title="Location" type="java.lang.Object"/>
-                <Column editable="true" title="Duration" type="java.lang.Object"/>
-                <Column editable="true" title="Time" type="java.lang.Object"/>
-                <Column editable="true" title="Price" type="java.lang.Object"/>
+              <Table columnCount="6" rowCount="4">
+                <Column editable="true" title="parkingID" type="java.lang.Object"/>
+                <Column editable="true" title="userID" type="java.lang.Object"/>
+                <Column editable="true" title="locationID" type="java.lang.Object"/>
+                <Column editable="true" title="park_date" type="java.lang.Object"/>
+                <Column editable="true" title="park_time" type="java.lang.Object"/>
+                <Column editable="true" title="price" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -150,6 +153,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Back to Dashboard"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
