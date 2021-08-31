@@ -260,7 +260,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {                                       
         try {
            
-            con = DriverManager.getConnection("jdbc:mysql://localhost:8889/parkingapp","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/parkingapp","root","");
             select = con.prepareStatement("SELECT * FROM users WHERE userID= 1");
             ResultSet rs = select.executeQuery();
 
