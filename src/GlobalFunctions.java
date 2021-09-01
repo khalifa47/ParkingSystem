@@ -1,3 +1,5 @@
+import com.mysql.jdbc.MysqlDataTruncation;
+
 import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,27 +38,16 @@ public class GlobalFunctions {
         return pass1.equals(pass2);
     }
 
-//    boolean checkDate(JTextField textField){
-//        String d = textField.getText();
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//        try {
-//            formatter.parse(d);
-//            return true;
-//        } catch (ParseException e) {
-//            return false;
-//        }
-//    }
-//
-//    Date StringToDate(JTextField textField) {
-//        String s = textField.getText();
-//        SimpleDateFormat formatter =new SimpleDateFormat("yyyy-MM-dd");
-//        try {
-//            return formatter.parse(s);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    boolean checkDate(JTextField textField){
+        String d = textField.getText();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            formatter.parse(d);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
 
     boolean isPhoneValid(JTextField input) {
         try {

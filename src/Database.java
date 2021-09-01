@@ -1,3 +1,4 @@
+import com.mysql.jdbc.MysqlDataTruncation;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import javax.swing.*;
@@ -45,6 +46,8 @@ public class Database extends Component {
             JOptionPane.showMessageDialog(component, success_message);
         } catch (MySQLIntegrityConstraintViolationException unameException) {
             JOptionPane.showMessageDialog(component, "Username already exists");
+        } catch (MysqlDataTruncation mysqlDataTruncation){
+            JOptionPane.showMessageDialog(component, "Incorrect Date Format\nAccepted format: YYYY-MM-DD");
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(component, err.getMessage());
             err.printStackTrace();
