@@ -2,8 +2,10 @@ import com.mysql.jdbc.MysqlDataTruncation;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.*;
+import java.util.Vector;
 
 public class Database extends Component {
     Connection conn;
@@ -52,5 +54,34 @@ public class Database extends Component {
             JOptionPane.showMessageDialog(component, err.getMessage());
             err.printStackTrace();
         }
+    }
+
+    public DefaultTableModel buildTableModel(ResultSet rs) {
+        Vector<String> columnNames = null;
+        Vector<Vector<Object>> data = null;
+        try {
+            ResultSetMetaData metaData = rs.getMetaData();
+
+            // names of columns
+            columnNames = new Vector<>();
+            int columnCount = metaData.getColumnCount();
+            for (int column = 1; column <= columnCount; column++) {
+                columnNames.add(metaData.getColumnName(column));
+            }
+
+            // data of the table
+            data = new Vector<>();
+            while (rs.next()) {
+                Vector<Object> vector = new Vector<>();
+                for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                    vector.add(rs.getObject(columnIndex));
+                }
+                data.add(vector);
+            }
+        } catch (SQLException err){
+            err.printStackTrace();
+        }
+
+        return new DefaultTableModel(data, columnNames);
     }
 }

@@ -77,7 +77,7 @@ public class Login extends JFrame implements ActionListener {
 
         }
         else if(e.getSource() == registerButton){
-            Register register = new Register();
+            Admin register = new Admin();
             register.setVisible(true);
             this.setVisible(false);
         }

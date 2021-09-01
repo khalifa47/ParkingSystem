@@ -303,9 +303,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_button3ActionPerformed
 
     private void button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5ActionPerformed
-        ChangePlan changePlan = new ChangePlan();
-        changePlan.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_button5ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
