@@ -81,14 +81,21 @@ public class Register extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Warning: Required fields are empty");
             } else if (gf.emailNotValid(emailField)) {
                 JOptionPane.showMessageDialog(this, "Warning: Invalid E-mail address");
+                emailField.setText("");
             } else if(gf.passwordNotValid(createPassField)){
                 JOptionPane.showMessageDialog(this, "Warning: Invalid Password. Must be 8 or more characters and have at least one digit");
+                createPassField.setText("");
+                confirmPassField.setText("");
             } else if (!gf.passMatching(createPassField, confirmPassField)) {
                 JOptionPane.showMessageDialog(this, "Warning: Passwords do not match");
+                createPassField.setText("");
+                confirmPassField.setText("");
             } else if (!gf.checkDate(dobField)){
                 JOptionPane.showMessageDialog(this, "Warning: Invalid date entered\nAccepted date format: YYYY-MM-DD");
+                dobField.setText("");
             } else if (!gf.isPhoneValid(phoneField)){
                 JOptionPane.showMessageDialog(this, "Warning: Invalid phone number entered. \nAccepted phone number format: 07XXXXXXXX");
+                phoneField.setText("");
             } else {
                 String SQL = "INSERT INTO users(fname, lname, uname, pass, email, phone, dob, balance) VALUES('" + fnameField.getText() + "', '" + lnameField.getText() + "', '" + unameField.getText() + "', MD5('" + String.valueOf(createPassField.getPassword()) + "'), '" + emailField.getText() + "', '" + phoneField.getText() + "', '" + dobField.getText() + "', 0)";
                 db.setData(SQL, "Registration success", this);
