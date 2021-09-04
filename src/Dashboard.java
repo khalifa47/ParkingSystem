@@ -272,8 +272,8 @@ public class Dashboard extends javax.swing.JFrame {
     private void initializeUser() {                                       
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost/parkingapp","root","");
-            pst = con.prepareStatement("SELECT fname, lname, email, phone, balance FROM users WHERE userID=1");
-            //select.setString(1, national_id);
+            pst = con.prepareStatement("SELECT fname, lname, email, phone, balance FROM users WHERE uname=?");
+            pst.setString(1, Login.uname);
             ResultSet rs = pst.executeQuery();
 
             if(rs.next())
@@ -286,7 +286,7 @@ public class Dashboard extends javax.swing.JFrame {
             }   
             else
             {
-                JOptionPane.showMessageDialog(this, "ERROR");
+                JOptionPane.showMessageDialog(this, "User Data Not Dound");
             }
 
 
@@ -294,7 +294,7 @@ public class Dashboard extends javax.swing.JFrame {
         } 
 
         catch (SQLException ex) {
-            
+            ex.printStackTrace();
         }
     }               
     
@@ -306,11 +306,12 @@ public class Dashboard extends javax.swing.JFrame {
         String Phone=phoneNumber.getText();
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost/parkingapp","root","");
-            update = con.prepareStatement("UPDATE users SET fname=?,lname=?, email=?, phone=? WHERE userID=1");
+            update = con.prepareStatement("UPDATE users SET fname=?,lname=?, email=?, phone=? WHERE uname=?");
             update.setString(1,FirstName);
             update.setString(2,LastName);
             update.setString(3,Email);
             update.setString(4,Phone);
+            update.setString(5, Login.uname);
             
             update.executeUpdate();
             JOptionPane.showMessageDialog(this, "Details updated Successfully!");
@@ -353,7 +354,7 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

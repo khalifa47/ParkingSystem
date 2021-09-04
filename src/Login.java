@@ -7,9 +7,11 @@ import java.sql.SQLException;
 
 public class Login extends JFrame implements ActionListener {
     private JLabel titleLabel, unameLabel, passLabel;
-    private JTextField unameField;
+    private static JTextField unameField;
     private JPasswordField passField;
     private JButton loginButton, registerButton;
+
+    public static String uname;
 
     Database db = new Database();
 
@@ -60,6 +62,7 @@ public class Login extends JFrame implements ActionListener {
                 try {
                     if (resultSet.next()){
                         JOptionPane.showMessageDialog(this, "Login Successful!");
+                        uname = unameField.getText();
                         Dashboard d = new Dashboard();
                         d.setVisible(true);
                         this.setVisible(false);
@@ -77,7 +80,7 @@ public class Login extends JFrame implements ActionListener {
 
         }
         else if(e.getSource() == registerButton){
-            Admin register = new Admin();
+            Register register = new Register();
             register.setVisible(true);
             this.setVisible(false);
         }

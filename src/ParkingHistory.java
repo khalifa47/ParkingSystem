@@ -117,7 +117,8 @@ public class ParkingHistory extends javax.swing.JFrame {
         try {
            
             con = DriverManager.getConnection("jdbc:mysql://localhost/parkingapp","root","");
-            select = con.prepareStatement("SELECT * FROM parking WHERE userID = 1");
+            select = con.prepareStatement("SELECT * FROM parking WHERE uname = ?");
+            select.setString(1, Login.uname);
             ResultSet Rs = select.executeQuery();
             
             ResultSetMetaData RSMD = Rs.getMetaData();
@@ -126,7 +127,7 @@ public class ParkingHistory extends javax.swing.JFrame {
             DFT.setRowCount(0);
  
             while (Rs.next()) {
-                Vector v = new Vector();
+                Vector<String> v = new Vector<>();
            
                 for (int ii = 1; ii <= CC; ii++) {
                     v.add(Rs.getString("parkingID"));
