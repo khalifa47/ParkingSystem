@@ -2,12 +2,13 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class TransactionHistory extends JFrame implements ActionListener {
     private JPanel TransactionHist;
     private JTable tblHistory;
     private JButton backButton;
-
+    Database db = new Database();
     public TransactionHistory(){
       add(TransactionHist);
       setSize(900, 600);
@@ -20,6 +21,10 @@ public class TransactionHistory extends JFrame implements ActionListener {
               null,
               new String[]{"Transaction ID", "Amount", "Date", "Time"}
       ));
+      String SQL = "SELECT parkingID, price, park_date, park_time FROM parking";
+      ResultSet resultSet = db.getData(SQL, this);
+
+      tblHistory.setModel(db.buildTableModel(resultSet));
   }
 
     @Override
@@ -31,12 +36,4 @@ public class TransactionHistory extends JFrame implements ActionListener {
         }
     }
 
-//    public static void main(String[] args) {
-//        TransactionHistory th = new TransactionHistory();
-//        th.setVisible(true);
-//        th.pack();
-//        th.setTitle("Parking System | Transaction History");
-//        th.setLocationRelativeTo(null);
-//        th.setDefaultCloseOperation(EXIT_ON_CLOSE);
-//    }
 }

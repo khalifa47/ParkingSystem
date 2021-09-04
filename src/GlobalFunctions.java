@@ -49,7 +49,7 @@ public class GlobalFunctions {
         }
     }
 
-    boolean isPhoneValid(JTextField input) {
+    static boolean isPhoneValid(JTextField input) {
         try {
             int test = Integer.parseInt(input.getText());
             return (getLength(test) == 9);
@@ -58,7 +58,7 @@ public class GlobalFunctions {
             return false;
         }
     }
-    int getLength(int test) {
+    static int getLength(int test) {
         String s = Integer.toString(test);
         return s.length();
     }

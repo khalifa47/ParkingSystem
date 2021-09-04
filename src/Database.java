@@ -84,4 +84,16 @@ public class Database extends Component {
 
         return new DefaultTableModel(data, columnNames);
     }
+    public ResultSet setData2(String SQL, String success_message , Component component) {
+        try{
+            conn = connect();
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs = stmt.executeQuery(SQL);
+            JOptionPane.showMessageDialog(component, success_message);
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(component, err.getMessage());
+            err.printStackTrace();
+        }
+        return rs;
+    }
 }
