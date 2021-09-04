@@ -35,13 +35,13 @@ public class ParkingHistory extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "parkingID", "userID", "locationID", "park_date", "park_time", "price"
+                "parkingID", "locationID", "park_date", "park_time", "price"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -130,7 +130,6 @@ public class ParkingHistory extends javax.swing.JFrame {
            
                 for (int ii = 1; ii <= CC; ii++) {
                     v.add(Rs.getString("parkingID"));
-                    v.add(Rs.getString("userID"));
                     v.add(Rs.getString("locationID"));
                     v.add(Rs.getString("park_date"));
                     v.add(Rs.getString("park_time"));
